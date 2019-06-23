@@ -1,0 +1,32 @@
+version: '3'
+services:
+  web:
+    image: 919446158824.dkr.ecr.us-east-1.amazonaws.com/tracker-container-server:1.70.0-master
+    environment:
+     - TRACKER_WEB_SERVICE_HOST=web.tracker.local
+     - TRACKER_WEB_SERVICE_PORT=5050
+     - TRACKER_GRAPH_URL=http://graph.tracker.local:4050/graphql
+     - TRACKER_EVENTS_URL=http://graph.tracker.local:4050/events
+    hostname: web.tracker.local
+    ports:
+     - 5050:5050
+    networks:
+      network-tracker: {aliases: [web.tracker.local]}
+  graph:
+    image: 919446158824.dkr.ecr.us-east-1.amazonaws.com/tracker-container-graph:1.70.0-master
+    volumes:
+     - ~/tracker:/home/node/workspace
+     - ~/.gitconfig:/home/node/.gitconfig
+     - ~/.ssh:/home/node/.ssh
+    environment:
+     - TRACKER_GRAPH_SERVICE_HOST=graph.tracker.local
+     - TRACKER_GRAPH_SERVICE_PORT=4050
+     - TRACKER_WORKSPACE=/home/node/workspace
+    hostname: graph.tracker.local
+    ports:
+     - 4050:4050
+    networks:
+      network-tracker: {aliases: [graph.tracker.local]}
+networks:
+  network-tracker:
+    external: true
