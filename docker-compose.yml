@@ -1,7 +1,7 @@
 version: '3'
 services:
   web:
-    image: 919446158824.dkr.ecr.us-east-1.amazonaws.com/tracker-container-server:1.70.0-master
+    image: 919446158824.dkr.ecr.us-east-1.amazonaws.com/tracker-container-server:1.70.0-tool-operation-pkg-prod
     environment:
      - TRACKER_WEB_SERVICE_HOST=web.tracker.local
      - TRACKER_WEB_SERVICE_PORT=5050
@@ -13,7 +13,7 @@ services:
     networks:
       network-tracker: {aliases: [web.tracker.local]}
   graph:
-    image: 919446158824.dkr.ecr.us-east-1.amazonaws.com/tracker-container-graph:1.70.0-master
+    image: 919446158824.dkr.ecr.us-east-1.amazonaws.com/tracker-container-graph:1.70.0-tool-operation-pkg-prod
     volumes:
      - ~/tracker:/home/node/workspace
      - ~/.gitconfig:/home/node/.gitconfig
