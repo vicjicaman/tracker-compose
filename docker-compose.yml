@@ -1,7 +1,7 @@
 version: '3'
 services:
   web:
-    image: repoflow/tracker-container-server:1.70.0-release-public-container-prod
+    image: repoflow/tracker-container-server:1.70.2-master
     environment:
      - TRACKER_WEB_SERVICE_HOST=web.tracker.local
      - TRACKER_WEB_SERVICE_PORT=5050
@@ -13,7 +13,7 @@ services:
     networks:
       network-tracker: {aliases: [web.tracker.local]}
   graph:
-    image: repoflow/tracker-container-graph:1.70.0-release-public-container-prod
+    image: repoflow/tracker-container-graph:1.70.2-master
     volumes:
      - ~/tracker:/home/node/workspace
      - ~/.gitconfig:/home/node/.gitconfig
